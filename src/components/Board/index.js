@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSquare } from "../../Redux/Reducers/gameReducer";
 import { calculateWinner } from "../../Redux/Utils/utils";
+import { resetGame } from "../../Redux/Reducers/gameReducer";
 import Square from "../Square";
 
 const Board = () => {
@@ -30,7 +31,11 @@ const Board = () => {
             value={squares[index]}
             onClick={() => handleClick(index)}
         />
-    ]
+    ];
+
+    const handleReset = () => {
+        dispatch(resetGame());
+    };
 
     return(
         <div>
@@ -52,8 +57,10 @@ const Board = () => {
                     {renderSquare(8)}            
                 </div>
             </div>
+            <button onClick={handleReset}>
+                Reset
+            </button>
         </div>
-        
     );
 };
 

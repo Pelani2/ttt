@@ -19,8 +19,12 @@ const gameSlice = createSlice({
             state.squares[index] = state.xIsNext ? 'X' : 'O';
             state.xIsNext = !state.xIsNext;
         },
+        resetGame: (state) => {
+            state.squares = Array(9).fill(null);
+            state.xIsNext = true;
+        }
     },
 });
 
-export const { updateSquare } = gameSlice.actions;
+export const { updateSquare, resetGame } = gameSlice.actions;
 export default gameSlice.reducer;
