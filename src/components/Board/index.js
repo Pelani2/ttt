@@ -4,6 +4,7 @@ import { updateSquare } from "../../Redux/Reducers/gameReducer";
 import { calculateWinner } from "../../Redux/Utils/utils";
 import { resetGame } from "../../Redux/Reducers/gameReducer";
 import Square from "../Square";
+import "./board-styles.scss";
 
 const Board = () => {
     const squares = useSelector((state) => state.game.squares);
@@ -38,7 +39,7 @@ const Board = () => {
     };
 
     return(
-        <div>
+        <div className="game">
             <div className="status">{status}</div>
             <div className="board">
                 <div className="board-row">
@@ -57,7 +58,7 @@ const Board = () => {
                     {renderSquare(8)}            
                 </div>
             </div>
-            <button onClick={handleReset}>
+            <button onClick={handleReset} className="reset-button">
                 Reset
             </button>
         </div>
