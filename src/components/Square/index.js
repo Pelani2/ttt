@@ -1,9 +1,10 @@
 import React from "react";
 import "./square-styles.scss";
 
-const Square = ({ value, onClick}) => {
+const Square = ({ value, onClick, className }) => {
+    const combinedClassNames = `square ${className || ''}`;
     return (
-        <button className="square" onClick={onClick}>
+        <button className={combinedClassNames} onClick={onClick} >
             {value}
         </button>
     );

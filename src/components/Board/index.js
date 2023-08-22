@@ -8,31 +8,42 @@ import "./board-styles.scss";
 
 const Board = () => {
     const squares = useSelector((state) => state.game.squares);
+
     const xIsNext = useSelector((state) => state.game.xIsNext);
+
     const dispatch = useDispatch();
 
     const winner = calculateWinner(squares);
+    
     let status;
     if (winner) {
-        status = `Winner: ${winner}`;
+        status = `Winner: ${winner.player}`;
     } else {
         status = `Next player: ${xIsNext ? 'X' : 'O'}`;
     }
 
     const handleClick = (index) => {
-        if (squares[index] || calculateWinner(squares)) {
+        if (squares[index] || winner || calculateWinner(squares)) {
             return;
         }
 
         dispatch(updateSquare({ index }));
     };
 
-    const renderSquare = (index) => [
-        <Square 
-            value={squares[index]}
-            onClick={() => handleClick(index)}
-        />
-    ];
+    const renderSquare = (index) => {
+        const { line: winnerSquares = [] } = winner || {};
+        const isWinningSquare = winnerSquares.includes(index);
+        const animationClass = isWinningSquare ? 'winning-square' : '';
+
+        return (
+            <div className={`square ${animationClass}`}>
+                <Square
+                    value={squares[index]}
+                    onClick={() => handleClick(index)}
+                />
+            </div>
+        );
+    };
 
     const handleReset = () => {
         dispatch(resetGame());

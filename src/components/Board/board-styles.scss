@@ -24,11 +24,9 @@
 
 .board-row {
   display: grid;
-  grid-template-columns: repeat(3, 70px);
-}
-
-.square:hover {
-  background-color: #ccc;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  justify-content: center;
 }
 
 .reset-button {
@@ -45,5 +43,3 @@
     background-color: #e53a6f;
   }
 }
-
-  
