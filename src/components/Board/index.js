@@ -9,6 +9,14 @@ const Board = () => {
     const xIsNext = useSelector((state) => state.game.xIsNext);
     const dispatch = useDispatch();
 
+    const winner = calculateWinner(squares);
+    let status;
+    if (winner) {
+        status = `Winner: ${winner}`;
+    } else {
+        status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+    }
+
     const handleClick = (index) => {
         if (squares[index] || calculateWinner(squares)) {
             return;
@@ -25,23 +33,27 @@ const Board = () => {
     ]
 
     return(
-        <div className="board">
-            <div className="board-row">
-                {renderSquare(0)}            
-                {renderSquare(1)}            
-                {renderSquare(2)}            
-            </div>
-            <div className="board-row">
-                {renderSquare(3)}            
-                {renderSquare(4)}            
-                {renderSquare(5)}            
-            </div>
-            <div className="board-row">
-                {renderSquare(6)}            
-                {renderSquare(7)}            
-                {renderSquare(8)}            
+        <div>
+            <div className="status">{status}</div>
+            <div className="board">
+                <div className="board-row">
+                    {renderSquare(0)}            
+                    {renderSquare(1)}            
+                    {renderSquare(2)}            
+                </div>
+                <div className="board-row">
+                    {renderSquare(3)}            
+                    {renderSquare(4)}            
+                    {renderSquare(5)}            
+                </div>
+                <div className="board-row">
+                    {renderSquare(6)}            
+                    {renderSquare(7)}            
+                    {renderSquare(8)}            
+                </div>
             </div>
         </div>
+        
     );
 };
 
