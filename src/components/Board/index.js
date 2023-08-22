@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSquare } from "../../Redux/Reducers/gameReducer";
 import { calculateWinner } from "../../Redux/Utils/utils";
+import Square from "../Square";
 
 const Board = () => {
     const squares = useSelector((state) => state.game.squares);
