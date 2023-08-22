@@ -17,5 +17,9 @@ export function calculateWinner(squares) {
         }
     }
 
+    if (squares.every((square) => square !== null)) {
+        return 'Draw';
+    }
+
     return null;
 }
