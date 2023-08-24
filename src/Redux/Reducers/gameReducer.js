@@ -4,6 +4,7 @@ import { calculateWinner } from "../Utils/utils";
 const initialState = {
     squares: Array(9).fill(null),
     xIsNext: true,
+    history: [],
 };
 
 const gameSlice = createSlice({
@@ -18,10 +19,15 @@ const gameSlice = createSlice({
 
             state.squares[index] = state.xIsNext ? 'X' : 'O';
             state.xIsNext = !state.xIsNext;
+
+            state.history.push({
+                winner: calculateWinner(state.squares),
+            });
         },
         resetGame: (state) => {
             state.squares = Array(9).fill(null);
             state.xIsNext = true;
+            state.history = [];
         }
     },
 });
