@@ -8,17 +8,27 @@ const Scoreboard = () => {
     const opponentWins = history.filter((player) => player === "O").length;
 
     return (
-        <div className="scoreboard">
-            <h2>
+        <div className="scoreboard-container">
+            <h2 className="scoreboard-title">
                 Winner History
             </h2>
-            <ul>
-                <p>
-                    Player X wins: {playerWins}
-                </p>
-                <p>
-                    Player O wins: {opponentWins}
-                </p>
+            <ul className="score-list"> 
+                <li className="score-item">
+                    <span className="player-name">
+                        Player X
+                    </span>
+                    <span className="win-count">
+                        {playerWins}
+                    </span>
+                </li>
+                <li className="score-item">
+                    <span className="player-name">
+                        Player O 
+                    </span>
+                    <span className="win-count">
+                        {opponentWins}
+                    </span>
+                </li>
             </ul>
         </div>
     );
