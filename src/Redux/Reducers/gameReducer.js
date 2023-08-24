@@ -22,16 +22,18 @@ const gameSlice = createSlice({
 
             const winner = calculateWinner(state.squares);
             if (winner) {
-                const isWinnerHistory = state.history.some(item => item.player === winner.player);
-                if (!isWinnerHistory) {
-                    state.history.push(winner);
-                }
+                state.history.push(winner.player);
             }
         },
         resetGame: (state) => {
             state.squares = Array(9).fill(null);
             state.xIsNext = true;
         },
+        addWinnerToHistory: (state, action) => {
+            const gameNumber = state.history.length + 1;
+            const winner = { gameNumber, ...action.payload };
+            state.history.push(winner);
+        }
     },
 });
 

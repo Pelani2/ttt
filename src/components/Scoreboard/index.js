@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import "./scoreboard-styles.scss";
 
 const Scoreboard = () => {
-    const winnerHistory = useSelector((state) => state.game.history);
+    const history = useSelector((state) => state.game.history);
+    const playerWins = history.filter((player) => player === "X").length;
+    const opponentWins = history.filter((player) => player === "O").length;
 
     return (
         <div className="scoreboard">
@@ -11,11 +13,12 @@ const Scoreboard = () => {
                 Winner History
             </h2>
             <ul>
-                {winnerHistory.map((winner, index) => (
-                    <li key={index}>
-                        {`Game ${index + 1}: ${winner.player}`}
-                    </li>
-                ))}
+                <p>
+                    Player X wins: {playerWins}
+                </p>
+                <p>
+                    Player O wins: {opponentWins}
+                </p>
             </ul>
         </div>
     );
