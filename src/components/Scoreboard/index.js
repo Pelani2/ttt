@@ -1,6 +1,6 @@
 import React from "react";
-import "./scoreboard-styles.scss";
 import { useSelector } from "react-redux";
+import "./scoreboard-styles.scss";
 
 const Scoreboard = () => {
     const history = useSelector((state) => state.game.history);
